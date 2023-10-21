@@ -1,0 +1,28 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: notificationservice-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: notificationservice
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: notificationservice-server
+      label:
+        app: notificationservice
+    spec: 
+      containers: 
+        - env:
+            name: DOTNET_ENVIRONMENT
+            value: Production
+        - name: notificationservice
+          image: pitstop/notificationservice:1.0

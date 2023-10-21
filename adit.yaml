@@ -1,0 +1,46 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: adit-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: adit
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: adit-server
+      label:
+        app: adit
+    spec: 
+      containers: 
+        - env:
+            name: DOTNET_ENVIRONMENT
+            value: Production
+        - name: adit
+          image:  pitstop/auditlogservice:1.0
+          ports: 
+            - containerPort: 5000
+              protocol: TCP
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: adit-svc
+spec:
+  type: Nodeport
+  selector:
+    app: adit
+  ports:
+    - name: adit https
+      port: 5000
+      nodePort: 3007 
+      targetPort: 5000
+         

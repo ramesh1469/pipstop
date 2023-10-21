@@ -1,0 +1,46 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: vehicle-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: vehicle
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: vehicle-server
+      label:
+        app: vehicle
+    spec: 
+      containers: 
+        - env:
+            name: ASPNETCORE_ENVIRONMENT
+            value: Production
+        - name: vehicle
+          image: pitstop/vehiclemanagementapi:1.0
+          ports: 
+            - containerPort: 5000
+              protocol: TCP
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: vehicle-svc
+spec:
+  type: Nodeport
+  selector:
+    app: vehicle
+  ports:
+    - name: mail https
+      port: 5000
+      nodePort: 3007 
+      targetPort: 5000
+         

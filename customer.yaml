@@ -1,0 +1,46 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: custmoer-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: custmoer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: custmoer-server
+      label:
+        app: custmoer
+    spec: 
+      containers: 
+        - env:
+            name: ASPNETCORE_ENVIRONMENT
+            value: Production
+        - name: custmoer
+          image: pitstop/customermanagementapi:1.0
+          ports: 
+            - containerPort: 5100
+              protocol: TCP
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: custmoer-svc
+spec:
+  type: Nodeport
+  selector:
+    app: custmoer
+  ports:
+    - name: mail https
+      port: 5100
+      nodePort: 3006
+      targetPort: 5100
+         

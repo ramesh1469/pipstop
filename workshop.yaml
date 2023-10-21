@@ -1,0 +1,46 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: workshop-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: workshop
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: workshop-server
+      label:
+        app: workshop
+    spec: 
+      containers: 
+        - env:
+            name: ASPNETCORE_ENVIRONMENT
+            value: Production
+        - name: workshop
+          image: pitstop/workshopmanagementapi:1.0
+          ports: 
+            - containerPort: 5200
+              protocol: TCP
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshop-svc
+spec:
+  type: Nodeport
+  selector:
+    app: workshop
+  ports:
+    - name: workshop https
+      port: 5200
+      nodePort: 3007
+      targetPort: 5200
+         

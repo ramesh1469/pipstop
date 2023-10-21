@@ -1,0 +1,28 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: timeservice-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: timeservice
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: timeservice-server
+      label:
+        app: timeservice
+    spec: 
+      containers: 
+        - env:
+            name: DOTNET_ENVIRONMENT
+            value: Production
+        - name: timeservice
+          image: pitstop/timeservice:1.0

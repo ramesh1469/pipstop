@@ -1,0 +1,46 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: webapp-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: webapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: webapp-server
+      label:
+        app: webapp
+    spec: 
+      containers: 
+        - env:
+            name: ASPNETCORE_ENVIRONMENT
+            value: Production
+        - name: vehicle
+          image:  pitstop/webapp:1.0
+          ports: 
+            - containerPort: 7005
+              protocol: TCP
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-svc
+spec:
+  type: Nodeport
+  selector:
+    app: webapp
+  ports:
+    - name: mail https
+      port: 7005
+      nodePort: 3008
+      targetPort: 7005
+         

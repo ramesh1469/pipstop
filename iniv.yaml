@@ -1,0 +1,28 @@
+--- 
+apiVersion: apps/v1
+kind: 
+metadata:
+  name: invoi-server
+spec: 
+  minReadySeconds: 2
+  replicas: 2
+  selector:
+    matchLabel:
+      app: invoi
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50% 
+  template: 
+    metadata:
+      name: invoi-server
+      label:
+        app: invoi
+    spec: 
+      containers: 
+        - env:
+            name: DOTNET_ENVIRONMENT
+            value: Production
+        - name: invoi
+          image: pitstop/invoiceservice:1.0
