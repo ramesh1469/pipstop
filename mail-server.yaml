@@ -1,6 +1,6 @@
 --- 
 apiVersion: apps/v1
-kind: 
+kind: Deployment
 metadata:
   name: mail-server
 spec: 
@@ -23,6 +23,13 @@ spec:
       containers: 
         - name: sql
           image: maildev/maildev:1.1.0
+          resources:
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
           ports: 
             - containerPort: 25
             - containerPort: 80
@@ -33,13 +40,15 @@ kind: Service
 metadata:
   name: mail-svc
 spec:
-  type: Nodeport
+  type: "NodePort"
   selector:
     app: mail
   ports:
     - name: mail https
+      port: 25
       nodePort: 25
       targetPort: 25
     - name: mail https
+      port: 80
       nodePort: 3000
       targetPort: 4000          

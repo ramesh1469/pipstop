@@ -4,14 +4,14 @@ kind: ConfigMap
 metadata:
   name: rqconfigmap
 data:
-  rabbitmq.conf: |
+  rabbitmq.conf: 
     default_user = rabbitmquser
     default_pass = DEBmbwkSrzy9D1T9cJfa
 
 
 --- 
 apiVersion: apps/v1
-kind: 
+kind: Deployment 
 metadata:
   name: my-rabbit
 spec: 
@@ -31,32 +31,39 @@ spec:
       label:
         app: rabbit
     spec: 
-      containers: 
-        - env:
-            name: RABBITMQ_CONFIG_FILE
-            value: /etc/pitstop/rabbitmq.conf
-        - name: rabbit 
-          image: rabbitmq:3-management-alpine
-          ports: 
-            - containerPort: 
-                - 15672
-                - 5672
-              protocol: TCP
-          volumeMounts: 
-            name: rabbit-volume 
-            mountPath: /etc/pitstop/
-            readOnly: true
-      volumes: 
-        - name: rqconfig 
-          configMap: 
-            name: rqconfigmap 
+      - containers: 
+          - env:
+              name: RABBITMQ_CONFIG_FILE
+              value: /etc/pitstop/rabbitmq.conf
+          - name: rabbit 
+            image: rabbitmq:3-management-alpine
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
+            ports: 
+              - containerPort: 
+                  - 15672
+                  - 5672
+                protocol: TCP
+            volumeMounts: 
+              name: rabbit-volume 
+              mountPath: /etc/pitstop/
+              readOnly: true
+        volumes: 
+          - name: rqconfig 
+            configMap: 
+              name: rqconfigmap 
 --- 
 apiVersion: v1
 kind: Service
 metadata:
   name: rabbit-svc
 spec:
-  type: Nodeport
+  type: "NodePort"
   selector:
     app: rabbit
   ports:

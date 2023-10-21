@@ -1,6 +1,6 @@
 --- 
 apiVersion: apps/v1
-kind: 
+kind: Deployment
 metadata:
   name: notificationservice-server
 spec: 
@@ -20,9 +20,16 @@ spec:
       label:
         app: notificationservice
     spec: 
-      containers: 
-        - env:
-            name: DOTNET_ENVIRONMENT
-            value: Production
-        - name: notificationservice
-          image: pitstop/notificationservice:1.0
+      - containers: 
+          - env:
+              name: DOTNET_ENVIRONMENT
+              value: Production
+          - name: notificationservice
+            image: pitstop/notificationservice:1.0
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
