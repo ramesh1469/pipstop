@@ -39,7 +39,7 @@ spec:
           env:
             - name: DOTNET_ENVIRONMENT
               value: Production 
-      restartPolicy: "Never"              
+      restartPolicy: "Always"              
        
 ---
 apiVersion: v1
