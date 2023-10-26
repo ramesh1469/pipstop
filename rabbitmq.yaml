@@ -68,7 +68,7 @@ spec:
   selector:
     app: rabbit
   ports:
-    - name: rabbit-https
+    - name: rabbit-http
       port: 15672
       targetPort: 15672
     - name: rabbit-https
