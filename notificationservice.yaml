@@ -20,7 +20,7 @@ spec:
       labels:
         app: notificationservice
     spec: 
-       containers: 
+      containers: 
         - name: notificationservice
           image: pitstop/notificationservice:1.0
           resources:
@@ -33,3 +33,4 @@ spec:
           env:
             - name: DOTNET_ENVIRONMENT
               value: Production    
+      restartPolicy: Always            

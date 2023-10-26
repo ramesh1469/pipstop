@@ -39,7 +39,8 @@ spec:
               cpu: "500m"
           ports: 
             - containerPort: 1433
-              protocol: TCP
+              protocol: TCP 
+      restartPolicy: Always           
 --- 
 apiVersion: v1
 kind: Service

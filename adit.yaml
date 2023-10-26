@@ -35,7 +35,8 @@ spec:
               protocol: TCP
           env:
             - name: DOTNET_ENVIRONMENT
-              value: Production     
+              value: Production 
+      restartPolicy: Always                
        
 ---
 apiVersion: v1

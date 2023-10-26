@@ -32,4 +32,5 @@ spec:
                 cpu: "500m" 
             env:
               - name: DOTNET_ENVIRONMENT
-                value: Production    
+                value: Production  
+       restartPolicy: Always                

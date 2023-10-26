@@ -36,6 +36,7 @@ spec:
            ports: 
             - containerPort: 7005
               protocol: TCP
+      restartPolicy: Always             
 --- 
 apiVersion: v1
 kind: Service
@@ -49,5 +50,6 @@ spec:
     - name: mail-https
       port: 7005
       nodePort: 30007
-      targetPort: 7005
+      targetPort: 7005 
+
          

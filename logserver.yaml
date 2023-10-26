@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: log-server
 spec: 
-  minReadySeconds: 2
+  minReadySeconds: 2  
   replicas: 2
   selector:
     matchLabels:
@@ -35,7 +35,8 @@ spec:
               protocol: TCP 
           env:
             - name: ACCEPT_EULA
-              value: Y     
+              value: "Y" 
+      restartPolicy: Always            
 --- 
 apiVersion: v1
 kind: Service
@@ -46,7 +47,7 @@ spec:
   selector:
     name: log
   ports:
-     - name: mail https
+     - name: mail-https
        port: 80
        nodePort: 30002
        targetPort: 5341

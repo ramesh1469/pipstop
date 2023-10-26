@@ -57,6 +57,7 @@ spec:
           - name: rqconfig 
             configMap: 
               name: rqconfigmap 
+      restartPolicy: Always             
 --- 
 apiVersion: v1
 kind: Service
