@@ -37,13 +37,6 @@ spec:
               - name: RABBITMQ_CONFIG_FILE
                 value: /etc/pitstop/rabbitmq.conf
             image: rabbitmq:3-management-alpine
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
             ports: 
               - containerPort: 15672
               - containerPort: 5672

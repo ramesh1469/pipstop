@@ -26,12 +26,5 @@ spec:
              - name: DOTNET_ENVIRONMENT
                value: Production
            image: pitstop/timeservice:1.0
-           resources:
-             requests:
-               memory: "64Mi"
-               cpu: "250m"
-             limits:
-               memory: "128Mi"
-               cpu: "500m" 
       restartPolicy: Always    
                 

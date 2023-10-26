@@ -30,13 +30,6 @@ spec:
              - name: SA_PASSWORD
                value: 8jkGh47hnDw89Haq8LN2
           image: mcr.microsoft.com/azure-sql-edge
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           ports: 
             - containerPort: 1433
               protocol: TCP 

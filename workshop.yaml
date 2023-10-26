@@ -26,13 +26,6 @@ spec:
              - name: ASPNETCORE_ENVIRONMENT
                value: Production
            image: pitstop/workshopmanagementapi:1.0
-           resources:
-             requests:
-               memory: "64Mi"
-               cpu: "250m"
-             limits:
-               memory: "128Mi"
-               cpu: "500m"
            ports: 
              - containerPort: 5200
                protocol: TCP 

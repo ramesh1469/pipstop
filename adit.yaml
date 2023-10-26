@@ -26,36 +26,11 @@ spec:
           command:
             - "dotnet"
             - "Pitstop.AuditlogService.dll"
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
-          ports:
-            - containerPort: 5672
-              protocol: TCP
           env:
             - name: DOTNET_ENVIRONMENT
               value: Production 
       restartPolicy: "Always"              
-       
----
-apiVersion: v1
-kind: Service 
-metadata:
-  name: adit-svc
-spec: 
-  type: NodePort 
-  selector: 
-    name: adit
-  ports:
-    - name: ram-svc
-      port: 5672
-      protocol: TCP 
-      targetPort: 5672
-      nodePort: 30000
+      
                           
  
          

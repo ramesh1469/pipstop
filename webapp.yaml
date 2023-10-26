@@ -26,13 +26,6 @@ spec:
              - name: ASPNETCORE_ENVIRONMENT
                value: Production
            image:  pitstop/webapp:1.0
-           resources:
-             requests:
-               memory: "64Mi"
-               cpu: "250m"
-             limits:
-               memory: "128Mi"
-               cpu: "500m"
            ports: 
             - containerPort: 7005
               protocol: TCP
@@ -43,13 +36,12 @@ kind: Service
 metadata:
   name: webapp-svc
 spec:
-  type: NodePort
+  type: LoadBalancer 
   selector:
     app: webapp
   ports:
     - name: mail-https
       port: 7005
-      nodePort: 30007
       targetPort: 7005 
 
          
