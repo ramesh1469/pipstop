@@ -20,34 +20,34 @@ spec:
       label:
         app: custmoer
     spec: 
-      - containers: 
-          - env:
-              name: ASPNETCORE_ENVIRONMENT
-              value: Production
-          - name: custmoer
-            image: pitstop/customermanagementapi:1.0
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
-            ports: 
-              - containerPort: 5100
-                protocol: TCP
+      containers: 
+        - name: custmoer
+          image: pitstop/customermanagementapi:1.0
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports: 
+            - containerPort: 5100
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production    
 --- 
 apiVersion: v1
 kind: Service
 metadata:
   name: custmoer-svc
 spec:
-  type: "NodePort"
+  type: NodePort
   selector:
     app: custmoer
   ports:
     - name: mail https
       port: 5100
-      nodePort: 3006
       targetPort: 5100
+      nodePort: 30001
          

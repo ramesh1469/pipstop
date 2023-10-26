@@ -20,11 +20,11 @@ spec:
       label:
         app: workshopmanagementeventhandler
     spec: 
-      - containers: 
+      containers: 
           - env:
-              name: DOTNET_ENVIRONMENT
-              value: Production
-          - name: timeservice
+              - name: DOTNET_ENVIRONMENT
+                value: Production
+            name: timeservice
             image: pitstop/workshopmanagementeventhandler:1.0
             resources:
               requests:

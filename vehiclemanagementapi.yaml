@@ -20,34 +20,34 @@ spec:
       label:
         app: vehicle
     spec: 
-      - containers: 
-          - env:
-              name: ASPNETCORE_ENVIRONMENT
+      containers: 
+        - name: vehicle 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
               value: Production
-          - name: vehicle
-            image: pitstop/vehiclemanagementapi:1.0
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
-            ports: 
-              - containerPort: 5000
-                protocol: TCP
+          image: pitstop/vehiclemanagementapi:1.0
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+             memory: "128Mi"
+             cpu: "500m"
+          ports: 
+           - containerPort: 5000
+             protocol: TCP
 --- 
 apiVersion: v1
 kind: Service
 metadata:
   name: vehicle-svc
 spec:
-  type: "NodePort"
+  type: NodePort
   selector:
     app: vehicle
   ports:
     - name: mail https
       port: 5000
-      nodePort: 3007 
+      nodePort: 30006 
       targetPort: 5000
          

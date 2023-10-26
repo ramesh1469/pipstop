@@ -20,16 +20,16 @@ spec:
       label:
         app: timeservice
     spec: 
-      - containers: 
-          - env:
-              name: DOTNET_ENVIRONMENT
-              value: Production
-          - name: timeservice
-            image: pitstop/timeservice:1.0
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
+      containers: 
+         - name: timeservice
+           env:
+             - name: DOTNET_ENVIRONMENT
+               value: Production
+           image: pitstop/timeservice:1.0
+           resources:
+             requests:
+               memory: "64Mi"
+               cpu: "250m"
+             limits:
+               memory: "128Mi"
+               cpu: "500m"

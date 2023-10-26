@@ -20,34 +20,34 @@ spec:
       label:
         app: log
     spec: 
-      - containers: 
-         - env:
-             name: ACCEPT_EULA
-             value: Y
-         - name: log
-           image: datalust/seq:latest
-           resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
-           ports: 
-             - containerPort: 80
-               protocol: TCP
+      containers: 
+        - name: log
+          image: datalust/seq:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports: 
+            - containerPort: 80
+              protocol: TCP 
+          env:
+            - name: ACCEPT_EULA
+              value: Y     
 --- 
 apiVersion: v1
 kind: Service
 metadata:
   name: log-svc
 spec:
-  type: "NodePort"
+  type: NodePort
   selector:
-    app: log
+    name: log
   ports:
      - name: mail https
        port: 80
-       nodePort: 3001
+       nodePort: 30002
        targetPort: 5341
          

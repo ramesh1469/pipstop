@@ -31,11 +31,11 @@ spec:
       label:
         app: rabbit
     spec: 
-      - containers: 
-          - env:
-              name: RABBITMQ_CONFIG_FILE
-              value: /etc/pitstop/rabbitmq.conf
+      containers: 
           - name: rabbit 
+            env:
+              - name: RABBITMQ_CONFIG_FILE
+                value: /etc/pitstop/rabbitmq.conf
             image: rabbitmq:3-management-alpine
             resources:
               requests:
@@ -53,7 +53,7 @@ spec:
               name: rabbit-volume 
               mountPath: /etc/pitstop/
               readOnly: true
-        volumes: 
+      volumes: 
           - name: rqconfig 
             configMap: 
               name: rqconfigmap 
@@ -63,7 +63,7 @@ kind: Service
 metadata:
   name: rabbit-svc
 spec:
-  type: "NodePort"
+  type: NodePort
   selector:
     app: rabbit
   ports:
@@ -72,7 +72,7 @@ spec:
       targetPort: 15672
     - name: rabbit https
       port: 5672
-      nodePort: 3003
+      nodePort: 30004
       targetPort: 5672
                  
                 
