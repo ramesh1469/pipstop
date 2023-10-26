@@ -45,9 +45,8 @@ spec:
                 memory: "128Mi"
                 cpu: "500m"
             ports: 
-              - containerPort: 
-                  - 15672
-                  - 5672
+              - containerPort: 15672
+              - containerPort: 5672
                 protocol: TCP
             volumeMounts: 
               name: rabbit-volume 
