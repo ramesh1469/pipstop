@@ -44,10 +44,10 @@ spec:
   selector:
     name: mail
   ports:
-    - name: mail https
+    - name: mail-https
       port: 25
       targetPort: 25
-    - name: mail https
+    - name: mail-https
       port: 80
       nodePort: 30003
       targetPort: 4000          

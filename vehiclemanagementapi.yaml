@@ -46,7 +46,7 @@ spec:
   selector:
     app: vehicle
   ports:
-    - name: mail https
+    - name: mail-https
       port: 5000
       nodePort: 30006 
       targetPort: 5000

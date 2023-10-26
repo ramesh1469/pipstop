@@ -46,7 +46,7 @@ spec:
   selector:
     app: workshop
   ports:
-    - name: workshop https
+    - name: workshop-https
       port: 5200
       nodePort: 30008
       targetPort: 5200

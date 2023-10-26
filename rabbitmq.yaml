@@ -31,7 +31,7 @@ spec:
       labels:
         app: rabbit
     spec: 
-      containers: 
+      containers:
           - name: rabbit 
             env:
               - name: RABBITMQ_CONFIG_FILE
@@ -67,10 +67,10 @@ spec:
   selector:
     app: rabbit
   ports:
-    - name: rabbit https
+    - name: rabbit-https
       port: 15672
       targetPort: 15672
-    - name: rabbit https
+    - name: rabbit-https
       port: 5672
       nodePort: 30004
       targetPort: 5672

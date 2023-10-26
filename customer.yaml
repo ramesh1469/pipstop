@@ -46,7 +46,7 @@ spec:
   selector:
     app: custmoer
   ports:
-    - name: mail https
+    - name: mail-https
       port: 5100
       targetPort: 5100
       nodePort: 30001

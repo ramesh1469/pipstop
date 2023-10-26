@@ -46,7 +46,7 @@ spec:
   selector:
     app: webapp
   ports:
-    - name: mail https
+    - name: mail-https
       port: 7005
       nodePort: 30007
       targetPort: 7005

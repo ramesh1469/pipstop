@@ -50,7 +50,7 @@ spec:
   selector:
     app: sql
   ports:
-    - name: sql https
+    - name: sql-https
       nodePort: 30005
       port:  1433
       targetPort: 1433        
