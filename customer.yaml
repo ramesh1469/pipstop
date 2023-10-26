@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 2
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: custmoer
   strategy:
     type: RollingUpdate
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: custmoer-server
-      label:
+      labels:
         app: custmoer
     spec: 
       containers: 

@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 2
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: log
   strategy:
     type: RollingUpdate
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: log-server
-      label:
+      labels:
         app: log
     spec: 
       containers: 

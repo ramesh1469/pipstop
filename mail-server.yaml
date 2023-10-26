@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 2
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: mail
   strategy:
     type: RollingUpdate
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: mail-server
-      label:
+      labels:
         app: mail
     spec: 
       containers: 
@@ -40,7 +40,7 @@ kind: Service
 metadata:
   name: mail-svc
 spec:
-  type: "NodePort"
+  type: NodePort
   selector:
     name: mail
   ports:

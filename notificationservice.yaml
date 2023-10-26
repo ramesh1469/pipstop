@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 2
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: notificationservice
   strategy:
     type: RollingUpdate
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: notificationservice-server
-      label:
+      labels:
         app: notificationservice
     spec: 
        containers: 

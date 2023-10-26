@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: workshopmanagementeventhandler-server
-      label:
+      labels:
         app: workshopmanagementeventhandler
     spec: 
       containers: 

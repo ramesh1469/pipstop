@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 2
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: webapp
   strategy:
     type: RollingUpdate
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata:
       name: webapp-server
-      label:
+      labels:
         app: webapp
     spec: 
       containers:
