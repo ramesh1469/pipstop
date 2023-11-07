@@ -25,10 +25,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                - key: alpha.eksctl.io 
+                - key: alpha.eksctl.io/instance-id
                   operator:  In 
                   values: 
-                   - instance-id=i-0b7cb85e2da9b44dd
+                   - i-0b7cb85e2da9b44dd
       containers: 
         - name: sql
           image: maildev/maildev:1.1.0

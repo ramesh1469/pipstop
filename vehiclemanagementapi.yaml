@@ -25,10 +25,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                - key: alpha.eksctl.io 
+                - key: alpha.eksctl.io/instance-id
                   operator: In
                   values: 
-                   - instance-id=i-09eeca7831f6b52b2
+                   - i-09eeca7831f6b52b2
       containers: 
         - name: vehicle 
           env:
