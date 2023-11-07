@@ -20,6 +20,15 @@ spec:
       labels:
         app: log
     spec: 
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-0b7cb85e2da9b44dd
       containers: 
         - name: log
           image: datalust/seq:latest

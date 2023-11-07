@@ -31,6 +31,15 @@ spec:
       labels:
         app: rabbit
     spec: 
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-0b7cb85e2da9b44dd
       containers:
           - name: rabbit 
             env:

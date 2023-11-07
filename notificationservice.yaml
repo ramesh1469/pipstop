@@ -20,6 +20,15 @@ spec:
       labels:
         app: notificationservice
     spec: 
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-0b7cb85e2da9b44dd
       containers: 
         - name: notificationservice
           image: pitstop/notificationservice:1.0

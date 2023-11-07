@@ -20,6 +20,15 @@ spec:
       labels:
         app: sql
     spec: 
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-09eeca7831f6b52b2
       containers: 
         - name: sql
           env:

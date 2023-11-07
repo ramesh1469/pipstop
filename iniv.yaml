@@ -20,10 +20,19 @@ spec:
       labels:
         app: invoi
     spec: 
-       containers: 
-          - name: invoi
-            image: pitstop/invoiceservice:1.0
-            env:
-              - name: DOTNET_ENVIRONMENT
-                value: Production  
-       restartPolicy: Always                
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-0b7cb85e2da9b44dd 
+      containers: 
+        - name: invoi
+          image: pitstop/invoiceservice:1.0
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: Production  
+      restartPolicy: Always                

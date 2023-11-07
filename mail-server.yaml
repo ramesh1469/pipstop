@@ -20,16 +20,18 @@ spec:
       labels:
         app: mail
     spec: 
+      affinity: 
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: alpha.eksctl.io 
+                  operator: in 
+                  values: 
+                   - instance-id=i-0b7cb85e2da9b44dd
       containers: 
         - name: sql
           image: maildev/maildev:1.1.0
-          resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m"
           ports: 
             - containerPort: 25
             - containerPort: 80
