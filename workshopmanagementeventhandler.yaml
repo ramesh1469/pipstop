@@ -26,7 +26,7 @@ spec:
             nodeSelectorTerms:
               - matchExpressions:
                 - key: alpha.eksctl.io 
-                  operator: in 
+                  operator: In
                   values: 
                    - instance-id=i-09eeca7831f6b52b2
       containers: 
@@ -35,11 +35,4 @@ spec:
                 value: Production
             name: timeservice
             image: pitstop/workshopmanagementeventhandler:1.0
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "250m"
-              limits:
-                memory: "128Mi"
-                cpu: "500m" 
       restartPolicy: Always               

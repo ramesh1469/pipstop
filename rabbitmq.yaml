@@ -37,7 +37,7 @@ spec:
             nodeSelectorTerms:
               - matchExpressions:
                 - key: alpha.eksctl.io 
-                  operator: in 
+                  operator:  In
                   values: 
                    - instance-id=i-0b7cb85e2da9b44dd
       containers:
